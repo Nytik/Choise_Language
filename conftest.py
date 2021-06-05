@@ -14,14 +14,13 @@ def browser(request):
     options = Options()
     options.add_experimental_option('prefs', {'intl.accept_languages': language})
 
-    if language == "ru":
-        print(f"\nstart {language} LANGUAGE browser for test..")
-        browser = webdriver.Chrome(options=options)
-    elif language == "es":
+    for i in browser.find_elements_by_css_selector('select option'):
+        z = z + ' ' + i.get_attribute('value')
+    if language in z:
         print(f"\nstart {language} LANGUAGE browser for test..")
         browser = webdriver.Chrome(options=options)
     else:
-        raise pytest.UsageError("--language should be ru or es")
+        raise pytest.UsageError(f"--language should be in {z}")
     yield browser
     print("\nquit browser..")
     time.sleep(5)
