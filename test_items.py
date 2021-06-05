@@ -8,6 +8,6 @@ def test_have_button_basket(browser):
         browser.find_element_by_css_selector("[value='Добавить в корзину']")
     except NoSuchElementException as error:
         return error
-    return True
+    return print('Элемент найден!')
 
 
